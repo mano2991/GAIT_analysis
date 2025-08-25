@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gait Analysis Visualization Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1400px;
+        }
+        
+        .panel {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .header {
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+        
+        .panel h2 {
+            color: #1e293b;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .upload-area {
+            border-color: #cbd5e1;
+        }
+
+        .upload-area:hover {
+            border-color: #4f46e5;
+            background-color: #f8fafc;
+        }
+
+        .form-group label {
+            color: #334155;
+        }
+
+        .form-group input, .form-group select {
+            border-color: #cbd5e1;
+            border-radius: 0.5rem; /* Rounded corners for inputs */
+            padding: 0.6rem 0.8rem;
+            background-color: #f8fafc; /* Light grey background for inputs */
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+             outline: none;
+             border-color: #4f46e5;
+             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+        
+        .btn {
+            background-color: #4f46e5;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-success {
+            background-color: #16a34a;
+        }
+        .btn-success:hover {
+             background-color: #15803d;
+             box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+        }
+
+        .color-picker input[type="color"] {
+            -webkit-appearance: none;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 50%; /* Makes the color picker circular */
+            padding: 0;
+            cursor: pointer;
+        }
+        .color-picker input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+            border-radius: 50%;
+        }
+        .color-picker input[type="color"]::-webkit-color-swatch {
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+        }
+
+
+        .status.success { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+        .status.error { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+        .status.info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        
+        .spinner {
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto my-8 bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+        <div class="header p-8 text-center">
+            <h1 class="text-4xl font-bold tracking-tight">Gait Analysis Visualization Tool</h1>
+            <p class="text-lg text-slate-300 mt-2">Generate high-quality static plots from your DLC data</p>
+        </div>
+
+        <div class="content grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
+            <!-- Left Panel - Controls -->
+            <div class="controls-panel lg:col-span-1 space-y-6">
+                <div class="panel rounded-xl p-6">
+                    <h2 class="text-xl font-semibold pb-4 mb-4">📁 File Upload</h2>
+                    <div class="upload-area rounded-lg p-10 text-center cursor-pointer" id="uploadArea">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4
+ 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <p class="mt-2 text-sm text-gray-600">Click to upload or drag & drop</p>
+                        <p class="text-xs text-gray-500">CSV files only</p>
+                        <input type="file" id="csvFile" accept=".csv" class="hidden">
+                    </div>
+                    <div id="fileStatus" class="mt-4"></div>
+                </div>
+
+                <div class="panel rounded-xl p-6">
+                    <h2 class="text-xl font-semibold pb-4 mb-4">⚙️ Settings</h2>
+                    
+                    <div class="form-group">
+                        <label class="text-sm font-medium">Plot Title</label>
+                        <input type="text" id="plotTitle" value=" Gait Analysis Plot" class="mt-1 w-full">
+                    </div>
+
+                    <div class="grid-2 form-group">
+                         <div>
+                            <label class="text-sm font-medium">X-Axis Label</label>
+                            <input type="text" id="xAxisLabel" value="X - Coordinate" class="mt-1 w-full">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium">Y-Axis Label</label>
+                            <input type="text" id="yAxisLabel" value="Y - Coordinate" class="mt-1 w-full">
+                        </div>
+                    </div>
+
+                    <div class="form-group frame-selection">
+                        <label class="text-sm font-bold mb-2 block">Frame Selection</label>
+                        <div class="radio-group">
+                            <label class="text-sm"><input type="radio" name="frameType" value="range" checked> Frame Range</label>
+                        </div>
+                        <div class="grid grid-cols-2 mt-1 gap-4" id="rangeInputs">
+                            <div>
+                                <label class="text-xs text-gray-500">Start</label>
+                                <input type="number" id="startFrame" value="90" class="w-full mt-1">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-500">End</label>
+                                <input type="number" id="endFrame" value="120" class="w-full mt-1">
+                            </div>
+                        </div>
+                        <div class="radio-group mt-3">
+                            <label class="text-sm"><input type="radio" name="frameType" value="individual"> Individual Frames</label>
+                        </div>
+                        <input type="text" id="individualFrames" placeholder="e.g., 30, 41, 55, 92" class="mt-1 w-full" disabled>
+                    </div>
+
+                    <div class="grid-3 form-group">
+                        <div><label class="text-sm font-medium">Point Size</label><input type="number" id="pointSize" value="8" min="3" max="20" class="mt-1 w-full"></div>
+                        <div><label class="text-sm font-medium">Line Width</label><input type="number" id="lineWidth" value="5" min="1" max="15" class="mt-1 w-full"></div>
+                        <div><label class="text-sm font-medium">Text Size</label><input type="number" id="textSize" value="14" min="8" max="24" class="mt-1 w-full"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-sm font-medium">Likelihood Threshold</label>
+                        <input type="number" id="threshold" value="0.5" min="0" max="1" step="0.1" class="mt-1 w-full">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-sm font-medium">Body Part Colors</label>
+                        <div class="grid grid-cols-2 gap-x-6 gap-y-4 mt-2">
+                            <div class="color-picker text-sm flex items-center"><span>Toe:</span><input type="color" id="colorToe" value="#ff0000" class="ml-auto"></div>
+                            <div class="color-picker text-sm flex items-center"><span>MTP:</span><input type="color" id="colorMtp" value="#ffa500" class="ml-auto"></div>
+                            <div class="color-picker text-sm flex items-center"><span>Ankle:</span><input type="color" id="colorAnkle" value="#008000" class="ml-auto"></div>
+                            <div class="color-picker text-sm flex items-center"><span>Knee:</span><input type="color" id="colorKnee" value="#0000ff" class="ml-auto"></div>
+                            <div class="color-picker text-sm flex items-center"><span>Hip:</span><input type="color" id="colorHip" value="#800080" class="ml-auto"></div>
+                            <div class="color-picker text-sm flex items-center"><span>Iliac:</span><input type="color" id="colorIliac" value="#000000" class="ml-auto"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button class="btn w-full text-base py-3" id="generateBtn" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H9z" clip-rule="evenodd" /></svg>
+                            Generate Static Plot
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Results -->
+            <div class="results-panel lg:col-span-2">
+                <div class="panel rounded-xl p-6">
+                    <h2 class="text-xl font-semibold pb-4 mb-4">📊 Generated Visualization</h2>
+                    <div id="processingStatus"></div>
+                    <div id="results" class="flex justify-center items-center bg-slate-100 rounded-lg min-h-[600px] p-4">
+                        <p class="text-gray-500">Your plot will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let csvData = null;
+        let validData = null;
+
+        // DOM elements
+        const uploadArea = document.getElementById('uploadArea');
+        const csvFile = document.getElementById('csvFile');
+        const fileStatus = document.getElementById('fileStatus');
+        const generateBtn = document.getElementById('generateBtn');
+        const processingStatus = document.getElementById('processingStatus');
+        const results = document.getElementById('results');
+        const startFrameInput = document.getElementById('startFrame');
+        const endFrameInput = document.getElementById('endFrame');
+        const individualFramesInput = document.getElementById('individualFrames');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            uploadArea.addEventListener('click', () => csvFile.click());
+            csvFile.addEventListener('change', (e) => processFile(e.target.files[0]));
+            generateBtn.addEventListener('click', generateStaticVisualization);
+            
+            document.querySelectorAll('input[name="frameType"]').forEach(radio => {
+                radio.addEventListener('change', handleFrameTypeChange);
+            });
+        });
+
+        function handleFrameTypeChange(e) {
+            const isRange = e.target.value === 'range';
+            startFrameInput.disabled = !isRange;
+            endFrameInput.disabled = !isRange;
+            individualFramesInput.disabled = isRange;
+        }
+
+        function processFile(file) {
+            if (!file || !file.name.toLowerCase().endsWith('.csv')) {
+                showStatus('error', 'Please select a CSV file');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => parseCSV(e.target.result);
+            reader.readAsText(file);
+        }
+
+        function parseCSV(csvText) {
+            try {
+                const lines = csvText.split('\n').filter(line => line.trim());
+                if (lines.length < 3) throw new Error("CSV must have at least 3 rows.");
+                
+                const dataLines = lines.slice(2);
+                csvData = dataLines.map(line => line.split(','));
+
+                processData();
+                showStatus('success', `File loaded successfully! ${csvData.length} frames detected.`);
+                generateBtn.disabled = false;
+            } catch (error) {
+                showStatus('error', 'Error parsing CSV: ' + error.message);
+                csvData = null;
+                generateBtn.disabled = true;
+            }
+        }
+
+        function processData() {
+            const threshold = parseFloat(document.getElementById('threshold').value);
+            validData = { toe: [], mtp: [], ankle: [], knee: [], hip: [], iliac: [] };
+            const bodyPartIndices = {
+                'iliac': [1, 2, 3], 'hip': [4, 5, 6], 'knee': [7, 8, 9],
+                'ankle': [10, 11, 12], 'mtp': [13, 14, 15], 'toe': [16, 17, 18]
+            };
+
+            csvData.forEach((row, frameIdx) => {
+                for (const part in bodyPartIndices) {
+                    const [x_idx, y_idx, l_idx] = bodyPartIndices[part];
+                    if(row.length > l_idx) {
+                        const likelihood = parseFloat(row[l_idx]);
+                        if (likelihood > threshold) {
+                            validData[part][frameIdx] = {
+                                x: parseFloat(row[x_idx]),
+                                y: parseFloat(row[y_idx])
+                            };
+                        }
+                    }
+                }
+            });
+        }
+
+        function getSelectedFrames() {
+            const frameType = document.querySelector('input[name="frameType"]:checked').value;
+            if (frameType === 'range') {
+                const start = parseInt(startFrameInput.value);
+                const end = parseInt(endFrameInput.value);
+                if (isNaN(start) || isNaN(end) || start >= end) {
+                    throw new Error('Invalid frame range selected.');
+                }
+                return Array.from({ length: end - start + 1 }, (_, i) => i + start);
+            } else {
+                 const frames = individualFramesInput.value.split(',')
+                    .map(f => parseInt(f.trim()))
+                    .filter(f => !isNaN(f) && f >= 0);
+                if (frames.length === 0) {
+                    throw new Error('Please enter valid, comma-separated frame numbers.');
+                }
+                return frames;
+            }
+        }
+
+        function getNormalizedPoints(frameNum) {
+            const points = {};
+            for (const part in validData) {
+                if (validData[part][frameNum]) {
+                    points[part] = validData[part][frameNum];
+                }
+            }
+            if (Object.keys(points).length < 6 || !points.iliac) return null;
+            
+            const refX = points.iliac.x;
+            const refY = points.iliac.y;
+            
+            const normalized = {};
+            for (const part in points) {
+                normalized[part] = { x: points[part].x - refX, y: points[part].y - refY };
+            }
+            return normalized;
+        }
+
+        function generateStaticVisualization() {
+            if (!csvData || !validData) return;
+            setProcessing(true, 'Generating static plot...');
+            
+            setTimeout(() => {
+                try {
+                    const canvas = generateStaticPlot();
+                    displayResults(canvas);
+                } catch (error) {
+                    console.error(error);
+                    showStatus('error', 'Error generating plot: ' + error.message);
+                } finally {
+                    setProcessing(false);
+                }
+            }, 100);
+        }
+
+        function generateStaticPlot() {
+            // --- High-Resolution Canvas Setup ---
+            const dpi = 300;
+            // Define a target print size in inches (e.g., 8x7 inches)
+            const printWidthInches = 8;
+            const printHeightInches = 7;
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = printWidthInches * dpi;
+            canvas.height = printHeightInches * dpi;
+            const ctx = canvas.getContext('2d');
+
+            // Scaling factor for all drawing operations to match the high DPI
+            const scaleFactor = dpi / 96; // 96 is a common base screen DPI
+
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const selectedFrames = getSelectedFrames();
+            if (selectedFrames.length === 0) throw new Error('No valid frames selected');
+
+            let allPoints = [];
+            for (let i = 0; i < csvData.length; i++) {
+                const points = getNormalizedPoints(i);
+                if (points) allPoints.push(...Object.values(points));
+            }
+            if (allPoints.length === 0) throw new Error('No valid points found in the data.');
+
+            const minX = Math.min(...allPoints.map(p => p.x));
+            const maxX = Math.max(...allPoints.map(p => p.x));
+            const minY = Math.min(...allPoints.map(p => p.y));
+            const maxY = Math.max(...allPoints.map(p => p.y));
+            
+            const padding = 100 * scaleFactor; 
+            const scale = Math.min((canvas.width - 2 * padding) / (maxX - minX || 1), (canvas.height - 2 * padding) / (maxY - minY || 1)) * 0.9;
+            const offsetX = canvas.width / 2 - ((maxX + minX) / 2) * scale;
+            const offsetY = (canvas.height - (120 * scaleFactor)) / 2 - ((maxY + minY) / 2) * scale;
+
+            // Draw all frames as background
+            ctx.globalAlpha = 0.05;
+            for (let i = 0; i < csvData.length; i++) {
+                const points = getNormalizedPoints(i);
+                if (points) drawStickFigure(ctx, points, scale, offsetX, offsetY, '#94a3b8', 1 * scaleFactor);
+            }
+            
+            // Draw highlighted frames
+            ctx.globalAlpha = 1.0;
+            const colors = {
+                toe: document.getElementById('colorToe').value, mtp: document.getElementById('colorMtp').value,
+                ankle: document.getElementById('colorAnkle').value, knee: document.getElementById('colorKnee').value,
+                hip: document.getElementById('colorHip').value, iliac: document.getElementById('colorIliac').value
+            };
+            const lineWidth = parseInt(document.getElementById('lineWidth').value) * scaleFactor;
+            const pointSize = parseInt(document.getElementById('pointSize').value) * scaleFactor;
+            
+            selectedFrames.forEach(frameNum => {
+                const points = getNormalizedPoints(frameNum);
+                if (points) drawStickFigure(ctx, points, scale, offsetX, offsetY, null, lineWidth, colors, pointSize);
+            });
+            
+            // Add title, labels, and legend
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = '#1e293b';
+            const baseTextSize = parseInt(document.getElementById('textSize').value);
+            
+            // Title
+            ctx.font = `bold ${baseTextSize + 6 * scaleFactor}px Inter, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillText(document.getElementById('plotTitle').value, canvas.width / 2, 50 * scaleFactor);
+
+            // Axis Labels
+            ctx.font = `${baseTextSize * scaleFactor}px Inter, sans-serif`;
+            ctx.fillText(document.getElementById('xAxisLabel').value, canvas.width / 2, canvas.height - (80 * scaleFactor));
+            ctx.save();
+            ctx.translate(40 * scaleFactor, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillText(document.getElementById('yAxisLabel').value, 0, 0);
+            ctx.restore();
+            
+            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize);
+
+            // Create a downscaled canvas for display purposes
+            const displayCanvas = document.createElement('canvas');
+            displayCanvas.width = 800;
+            displayCanvas.height = 700;
+            const displayCtx = displayCanvas.getContext('2d');
+            displayCtx.drawImage(canvas, 0, 0, 800, 700);
+
+            // Attach the full-resolution data URL to the display canvas for download
+            displayCanvas.fullResolutionDataUrl = canvas.toDataURL('image/png');
+
+            return displayCanvas;
+        }
+
+        function drawStickFigure(ctx, points, scale, offsetX, offsetY, overrideColor, lineWidth, pointColors = null, pointSize = 6) {
+            const segments = [['toe', 'mtp'], ['mtp', 'ankle'], ['ankle', 'knee'], ['knee', 'hip'], ['hip', 'iliac']];
+            
+            ctx.lineCap = 'round';
+            ctx.lineWidth = lineWidth;
+            
+            segments.forEach(([part1, part2]) => {
+                const p1 = points[part1];
+                const p2 = points[part2];
+                if (p1 && p2) {
+                    ctx.strokeStyle = overrideColor || (pointColors ? pointColors[part1] : 'black');
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x * scale + offsetX, p1.y * scale + offsetY);
+                    ctx.lineTo(p2.x * scale + offsetX, p2.y * scale + offsetY);
+                    ctx.stroke();
+                }
+            });
+            
+            if (pointColors && pointSize > 0) {
+                for (const part in points) {
+                    if (pointColors[part]) {
+                        ctx.fillStyle = pointColors[part];
+                        drawMarker(ctx, part, points[part].x * scale + offsetX, points[part].y * scale + offsetY, pointSize);
+                    }
+                }
+            }
+        }
+
+        function drawMarker(ctx, part, x, y, size) {
+            const s = size / 2;
+            ctx.beginPath();
+            switch (part) {
+                case 'toe': ctx.arc(x, y, s, 0, 2 * Math.PI); break;
+                case 'mtp': ctx.rect(x - s, y - s, size, size); break;
+                case 'ankle': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.lineTo(x - s, y); ctx.closePath(); break;
+                case 'knee': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y + s); ctx.lineTo(x - s, y + s); ctx.closePath(); break;
+                case 'hip': ctx.moveTo(x, y + s); ctx.lineTo(x + s, y - s); ctx.lineTo(x - s, y - s); ctx.closePath(); break;
+                case 'iliac': ctx.moveTo(x - s, y); ctx.lineTo(x + s, y); ctx.moveTo(x, y - s); ctx.lineTo(x, y + s); ctx.stroke(); return; 
+            }
+            ctx.fill();
+        }
+
+        function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize) {
+            const scaleFactor = canvasWidth / 800; // Use canvas width to determine scale
+            ctx.font = `${12 * scaleFactor}px Inter, sans-serif`;
+            ctx.textAlign = 'left';
+            const legendY = canvasHeight - (35 * scaleFactor);
+            const parts = ['toe', 'mtp', 'ankle', 'knee', 'hip', 'iliac'];
+            const itemWidth = 90 * scaleFactor;
+            let startX = (canvasWidth - (parts.length * itemWidth)) / 2;
+
+            parts.forEach(part => {
+                ctx.fillStyle = colors[part];
+                ctx.strokeStyle = colors[part];
+                ctx.lineWidth = 2 * scaleFactor;
+                drawMarker(ctx, part, startX, legendY, pointSize);
+                
+                ctx.fillStyle = '#334155';
+                ctx.fillText(part.charAt(0).toUpperCase() + part.slice(1), startX + (15 * scaleFactor), legendY + (4 * scaleFactor));
+                startX += itemWidth;
+            });
+        }
+
+        function displayResults(displayCanvas) {
+            results.innerHTML = '';
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item p-4';
+
+            const header = document.createElement('div');
+            header.className = 'result-header flex justify-between items-center mb-4';
+            header.innerHTML = '<h3 class="text-lg font-semibold text-slate-800">📊 Static Gait Plot</h3>';
+
+            const downloadBtn = document.createElement('a');
+            downloadBtn.className = 'btn btn-success inline-flex items-center text-sm py-2 px-4';
+            downloadBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>Download PNG (300 DPI)';
+            downloadBtn.download = 'gait_static_plot_300dpi.png';
+            downloadBtn.href = displayCanvas.fullResolutionDataUrl;
+            
+            header.appendChild(downloadBtn);
+            resultItem.appendChild(header);
+            resultItem.appendChild(displayCanvas); // Show the smaller canvas
+            results.appendChild(resultItem);
+        }
+
+        function setProcessing(processing, message = '') {
+            generateBtn.disabled = processing;
+            if (processing) {
+                generateBtn.innerHTML = '<div class="spinner w-5 h-5 border-2"></div> Processing...';
+                processingStatus.innerHTML = `<div class="status info p-4 rounded-md">${message}</div>`;
+            } else {
+                generateBtn.innerHTML = '🎨 Generate Static Plot';
+                processingStatus.innerHTML = '';
+            }
+        }
+
+        function showStatus(type, message) {
+            fileStatus.innerHTML = `<div class="status p-4 rounded-md ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>
