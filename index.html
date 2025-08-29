@@ -13,206 +13,44 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
         }
-
-        .container {
-            max-width: 1400px;
-        }
-        
-        .panel {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-        }
-
-        .header {
-            background-color: #1e293b;
-            color: #f8fafc;
-        }
-        
-        .panel h2 {
-            color: #1e293b;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .upload-area {
-            border-color: #cbd5e1;
-            border: 2px dashed #cbd5e1;
-        }
-
-        .upload-area:hover {
-            border-color: #4f46e5;
-            background-color: #f8fafc;
-        }
-
-        .form-group label {
-            color: #334155;
-        }
-
-        .form-group input, .form-group select {
-            border: 1px solid #cbd5e1;
-            border-radius: 0.5rem;
-            padding: 0.6rem 0.8rem;
-            background-color: #f8fafc;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-             outline: none;
-             border-color: #4f46e5;
-             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-        }
-        
-        .btn {
-            background-color: #4f46e5;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn:hover {
-            background-color: #4338ca;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-        }
-
-        .btn:disabled {
-            background-color: #94a3b8;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .btn-success {
-            background-color: #16a34a;
-        }
-        .btn-success:hover {
-             background-color: #15803d;
-             box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
-        }
-
-        .color-picker input[type="color"] {
-            -webkit-appearance: none;
-            width: 32px;
-            height: 32px;
-            border: 1px solid #e2e8f0;
-            border-radius: 50%;
-            padding: 0;
-            cursor: pointer;
-        }
-        .color-picker input[type="color"]::-webkit-color-swatch-wrapper {
-            padding: 0;
-            border-radius: 50%;
-        }
-        .color-picker input[type="color"]::-webkit-color-swatch {
-            border: none;
-            border-radius: 50%;
-        }
-
-        .status.success { 
-            background-color: #f0fdf4; 
-            color: #15803d; 
-            border: 1px solid #bbf7d0; 
-            border-radius: 0.5rem;
-        }
-        .status.error { 
-            background-color: #fef2f2; 
-            color: #b91c1c; 
-            border: 1px solid #fecaca; 
-            border-radius: 0.5rem;
-        }
-        .status.info { 
-            background-color: #eff6ff; 
-            color: #1d4ed8; 
-            border: 1px solid #bfdbfe; 
-            border-radius: 0.5rem;
-        }
-        
-        .spinner {
-            width: 1.25rem;
-            height: 1.25rem;
-            border: 2px solid transparent;
-            border-top: 2px solid currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .download-options {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .dpi-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(to right, #e2e8f0 0%, #4f46e5 0%);
-            outline: none;
-            position: relative;
-        }
-
-        .dpi-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #4f46e5;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .dpi-slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #4f46e5;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .slider-container {
-            position: relative;
-            margin: 0.5rem 0;
-        }
-
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            color: #64748b;
-            margin-top: 0.25rem;
-        }
-
-        .radio-group {
-            margin-bottom: 0.5rem;
-        }
-
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 0.25rem;
-        }
-
-        .radio-group input[type="radio"] {
-            margin-right: 0.5rem;
-        }
+        .container { max-width: 1400px; }
+        .panel { background-color: #ffffff; border: 1px solid #e2e8f0; }
+        .header { background-color: #1e293b; color: #f8fafc; }
+        .panel h2 { color: #1e293b; border-bottom: 1px solid #e2e8f0; }
+        .upload-area { border: 2px dashed #cbd5e1; }
+        .upload-area:hover { border-color: #4f46e5; background-color: #f8fafc; }
+        .form-group label { color: #334155; }
+        .form-group input, .form-group select { border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.6rem 0.8rem; background-color: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+        .btn { background-color: #4f46e5; color: white; border: none; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .btn:hover { background-color: #4338ca; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); }
+        .btn:disabled { background-color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-success { background-color: #16a34a; }
+        .btn-success:hover { background-color: #15803d; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2); }
+        .color-picker input[type="color"] { -webkit-appearance: none; width: 32px; height: 32px; border: 1px solid #e2e8f0; border-radius: 50%; padding: 0; cursor: pointer; }
+        .color-picker input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; border-radius: 50%; }
+        .color-picker input[type="color"]::-webkit-color-swatch { border: none; border-radius: 50%; }
+        .status.success { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; border-radius: 0.5rem; }
+        .status.error { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 0.5rem; }
+        .status.info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; border-radius: 0.5rem; }
+        .spinner { width: 1.25rem; height: 1.25rem; border: 2px solid transparent; border-top: 2px solid currentColor; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .download-options { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; margin-top: 1rem; }
+        .dpi-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(to right, #e2e8f0 0%, #4f46e5 0%); outline: none; position: relative; }
+        .dpi-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .dpi-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #4f46e5; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .slider-container { position: relative; margin: 0.5rem 0; }
+        .slider-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-top: 0.25rem; }
+        .radio-group { margin-bottom: 0.5rem; }
+        .radio-group label { display: flex; align-items: center; cursor: pointer; margin-bottom: 0.25rem; }
+        .radio-group input[type="radio"] { margin-right: 0.5rem; }
+        #interactiveFrameSelector { display: flex; flex-wrap: wrap; gap: 6px; }
+        .frame-box { width: 40px; height: 30px; border: 1px solid #d1d5db; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #374151; background-color: white; cursor: pointer; transition: all 0.2s ease; user-select: none; }
+        .frame-box:hover { border-color: #4f46e5; color: #4f46e5; }
+        .frame-box.selected-frame { background-color: #4f46e5; color: white; border-color: #4338ca; font-weight: 600; }
+        #plot-container { position: relative; max-width: 800px; max-height: 700px; cursor: pointer; }
+        #hover-canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
+        #tooltip { position: absolute; background-color: rgba(2, 6, 23, 0.8); color: white; padding: 4px 8px; font-size: 12px; border-radius: 4px; pointer-events: none; display: none; transform: translate(-50%, -150%); }
     </style>
 </head>
 <body>
@@ -223,7 +61,6 @@
         </div>
 
         <div class="content grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
-            <!-- Left Panel - Controls -->
             <div class="controls-panel lg:col-span-1 space-y-6">
                 <div class="panel rounded-xl p-6">
                     <h2 class="text-xl font-semibold pb-4 mb-4">📁 File Upload</h2>
@@ -238,12 +75,10 @@
 
                 <div class="panel rounded-xl p-6">
                     <h2 class="text-xl font-semibold pb-4 mb-4">⚙️ Settings</h2>
-                    
                     <div class="form-group mb-4">
                         <label class="text-sm font-medium">Plot Title</label>
                         <input type="text" id="plotTitle" value="Gait Analysis Plot" class="mt-1 w-full">
                     </div>
-
                     <div class="grid grid-cols-2 gap-4 form-group mb-4">
                          <div>
                             <label class="text-sm font-medium">X-Axis Label</label>
@@ -254,39 +89,35 @@
                             <input type="text" id="yAxisLabel" value="Y - Coordinate" class="mt-1 w-full">
                         </div>
                     </div>
-
                     <div class="form-group frame-selection mb-4">
                         <label class="text-sm font-bold mb-2 block">Frame Selection</label>
                         <div class="radio-group">
                             <label class="text-sm"><input type="radio" name="frameType" value="range" checked> Frame Range</label>
                         </div>
                         <div class="grid grid-cols-2 mt-1 gap-4" id="rangeInputs">
-                            <div>
-                                <label class="text-xs text-gray-500">Start</label>
-                                <input type="number" id="startFrame" value="90" class="w-full mt-1">
-                            </div>
-                            <div>
-                                <label class="text-xs text-gray-500">End</label>
-                                <input type="number" id="endFrame" value="120" class="w-full mt-1">
-                            </div>
+                            <div><label class="text-xs text-gray-500">Start</label><input type="number" id="startFrame" value="90" class="w-full mt-1"></div>
+                            <div><label class="text-xs text-gray-500">End</label><input type="number" id="endFrame" value="120" class="w-full mt-1"></div>
                         </div>
                         <div class="radio-group mt-3">
                             <label class="text-sm"><input type="radio" name="frameType" value="individual"> Individual Frames</label>
                         </div>
                         <input type="text" id="individualFrames" placeholder="e.g., 30, 41, 55, 92" class="mt-1 w-full" disabled>
+                        <div class="radio-group mt-3">
+                            <label class="text-sm"><input type="radio" name="frameType" value="interactive"> Interactive Selection</label>
+                        </div>
+                        <div id="interactiveFrameSelector" class="mt-2 p-2 border border-gray-200 rounded-lg bg-slate-50 hidden max-h-48 overflow-y-auto">
+                            <p class="text-xs text-gray-500 text-center p-4">Upload a CSV file to visually select frames.</p>
+                        </div>
                     </div>
-
                     <div class="grid grid-cols-3 gap-4 form-group mb-4">
                         <div><label class="text-sm font-medium">Point Size</label><input type="number" id="pointSize" value="8" min="3" max="20" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Line Width</label><input type="number" id="lineWidth" value="5" min="1" max="15" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Text Size</label><input type="number" id="textSize" value="14" min="8" max="24" class="mt-1 w-full"></div>
                     </div>
-
                     <div class="form-group mb-4">
                         <label class="text-sm font-medium">Likelihood Threshold</label>
                         <input type="number" id="threshold" value="0.5" min="0" max="1" step="0.1" class="mt-1 w-full">
                     </div>
-
                     <div class="form-group mb-4">
                         <label class="text-sm font-medium mb-2 block">Text Color</label>
                         <div class="color-picker text-sm flex items-center">
@@ -294,7 +125,6 @@
                             <input type="color" id="textColor" value="#1e293b" class="ml-auto">
                         </div>
                     </div>
-
                     <div class="form-group mb-4">
                         <label class="text-sm font-medium">Body Part Colors</label>
                         <div class="grid grid-cols-2 gap-x-6 gap-y-4 mt-2">
@@ -307,8 +137,34 @@
                         </div>
                     </div>
 
-                    <!-- Download Options -->
-                    <div class="form-group mb-4">
+                    <div class="form-group mb-4 border-t pt-4">
+                        <label class="text-sm font-bold flex items-center">
+                            <input type="checkbox" id="showBackgroundFrames" class="mr-2 h-4 w-4" checked>
+                            Show Background Frames
+                        </label>
+                        <div id="backgroundControls" class="mt-3 space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600">Color</label>
+                                    <div class="color-picker text-sm flex items-center mt-1">
+                                        <span>Frame Color:</span>
+                                        <input type="color" id="backgroundFrameColor" value="#94a3b8" class="ml-auto">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600">Opacity</label>
+                                    <input type="range" id="backgroundOpacity" min="0" max="100" value="10" class="w-full mt-1">
+                                    <div class="text-xs text-center text-gray-600" id="opacityValue">10%</div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">Frame Step</label>
+                                <input type="number" id="frameStep" value="10" min="1" class="w-full mt-1">
+                                <p class="text-xs text-gray-500 mt-1">Draw one background frame every N steps.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 border-t pt-4">
                         <label class="text-sm font-medium mb-3 block">Download Options</label>
                         <div class="download-options">
                             <div class="grid grid-cols-2 gap-4 mb-4">
@@ -316,10 +172,7 @@
                                     <label class="text-xs font-medium text-gray-600 mb-2 block">DPI Quality</label>
                                     <div class="slider-container">
                                         <input type="range" id="dpiSlider" min="100" max="600" value="300" step="50" class="dpi-slider">
-                                        <div class="slider-labels">
-                                            <span>100</span>
-                                            <span>600</span>
-                                        </div>
+                                        <div class="slider-labels"><span>100</span><span>600</span></div>
                                     </div>
                                     <div class="text-center text-sm font-semibold text-gray-700 mt-1" id="dpiValue">300 DPI</div>
                                 </div>
@@ -331,22 +184,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="text-xs text-gray-500 mb-2">
-                                <span id="imageSizeInfo">Image size: ~1600 x 1400 pixels</span>
-                            </div>
+                            <div class="text-xs text-gray-500 mb-2"><span id="imageSizeInfo">Image size: ~1600 x 1400 pixels</span></div>
                         </div>
                     </div>
-
                     <div class="mt-6">
                         <button class="btn w-full text-base py-3" id="generateBtn" disabled>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H9z" clip-rule="evenodd" /></svg>
-                            Generate Static Plot
+                            Generate Plot
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Panel - Results -->
             <div class="results-panel lg:col-span-2">
                 <div class="panel rounded-xl p-6">
                     <h2 class="text-xl font-semibold pb-4 mb-4">📊 Generated Visualization</h2>
@@ -363,6 +212,8 @@
         // Global variables
         let csvData = null;
         let validData = null;
+        let allNormalizedPoints = [];
+        let selectedFrames = [];
 
         // DOM elements
         const uploadArea = document.getElementById('uploadArea');
@@ -377,18 +228,24 @@
         const dpiSlider = document.getElementById('dpiSlider');
         const dpiValue = document.getElementById('dpiValue');
         const imageSizeInfo = document.getElementById('imageSizeInfo');
+        const interactiveFrameSelector = document.getElementById('interactiveFrameSelector');
+        // NEW: Background Controls
+        const showBackgroundFramesCheckbox = document.getElementById('showBackgroundFrames');
+        const backgroundControls = document.getElementById('backgroundControls');
+        const backgroundOpacitySlider = document.getElementById('backgroundOpacity');
+        const opacityValue = document.getElementById('opacityValue');
+
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             uploadArea.addEventListener('click', () => csvFile.click());
             csvFile.addEventListener('change', (e) => processFile(e.target.files[0]));
-            generateBtn.addEventListener('click', generateStaticVisualization);
+            generateBtn.addEventListener('click', () => generateStaticVisualization(true));
             
             document.querySelectorAll('input[name="frameType"]').forEach(radio => {
                 radio.addEventListener('change', handleFrameTypeChange);
             });
 
-            // DPI slider event listener
             dpiSlider.addEventListener('input', function() {
                 const dpi = parseInt(this.value);
                 dpiValue.textContent = `${dpi} DPI`;
@@ -396,16 +253,165 @@
                 updateSliderBackground(this);
             });
 
-            // Initialize image size info and slider
+            // NEW: Listeners for background controls
+            showBackgroundFramesCheckbox.addEventListener('change', () => {
+                backgroundControls.style.display = showBackgroundFramesCheckbox.checked ? 'block' : 'none';
+            });
+            backgroundOpacitySlider.addEventListener('input', function() {
+                opacityValue.textContent = `${this.value}%`;
+            });
+
             updateImageSizeInfo(300);
             updateSliderBackground(dpiSlider);
         });
 
+        // --- All other functions from previous version go here ---
+        function updateSliderBackground(slider) { /* ... unchanged ... */ }
+        function updateImageSizeInfo(dpi) { /* ... unchanged ... */ }
+        function handleFrameTypeChange(e) { /* ... unchanged ... */ }
+        function processFile(file) { /* ... unchanged ... */ }
+        function parseCSV(csvText) { /* ... unchanged ... */ }
+        function buildInteractiveSelector() { /* ... unchanged ... */ }
+        function processData() { /* ... unchanged ... */ }
+        function getSelectedFrames() { /* ... unchanged ... */ }
+        function getNormalizedPoints(frameNum) { /* ... unchanged ... */ }
+        function drawStickFigure(ctx, points, scale, offsetX, offsetY, overrideColor, lineWidth, pointColors = null, pointSize = 6) { /* ... unchanged ... */ }
+        function drawMarker(ctx, part, x, y, size) { /* ... unchanged ... */ }
+        function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize, textColor, scaleFactor) { /* ... unchanged ... */ }
+        function displayResults(displayCanvas, fullResolutionCanvas) { /* ... unchanged ... */ }
+        function findNearestFrame(mouseX, mouseY, plotContext) { /* ... unchanged ... */ }
+        function handleCanvasHover(event, plotContext) { /* ... unchanged ... */ }
+        function handleCanvasLeave() { /* ... unchanged ... */ }
+        function handleCanvasClick(event, plotContext) { /* ... unchanged ... */ }
+        function setProcessing(processing, message = '') { /* ... unchanged ... */ }
+        function showStatus(type, message) { /* ... unchanged ... */ }
+        
+        // MODIFIED: generateStaticVisualization
+        function generateStaticVisualization(isUserInitiated = false) {
+            if (!csvData || !validData) return;
+            if (isUserInitiated) setProcessing(true, 'Generating plot...');
+            
+            setTimeout(() => {
+                try {
+                    if (isUserInitiated) {
+                        selectedFrames = getSelectedFrames();
+                    }
+                    if (selectedFrames.length === 0 && isUserInitiated) {
+                         throw new Error('No valid frames selected.');
+                    }
+                    const { displayCanvas, fullResolutionCanvas } = generateStaticPlot();
+                    displayResults(displayCanvas, fullResolutionCanvas);
+                } catch (error) {
+                    console.error(error);
+                    showStatus('error', 'Error generating plot: ' + error.message);
+                } finally {
+                    if (isUserInitiated) setProcessing(false);
+                }
+            }, 50);
+        }
+
+        // MODIFIED: generateStaticPlot
+        function generateStaticPlot() {
+            const dpi = parseInt(dpiSlider.value);
+            const backgroundType = document.getElementById('backgroundType').value;
+            const textColor = document.getElementById('textColor').value;
+            
+            // Get background frame settings
+            const showBackground = document.getElementById('showBackgroundFrames').checked;
+            const backgroundFrameColor = document.getElementById('backgroundFrameColor').value;
+            const backgroundOpacity = parseInt(document.getElementById('backgroundOpacity').value) / 100;
+            const frameStep = parseInt(document.getElementById('frameStep').value);
+            
+            const printWidthInches = 8;
+            const printHeightInches = 7;
+            
+            const fullResolutionCanvas = document.createElement('canvas');
+            fullResolutionCanvas.width = printWidthInches * dpi;
+            fullResolutionCanvas.height = printHeightInches * dpi;
+            const ctx = fullResolutionCanvas.getContext('2d');
+
+            const scaleFactor = dpi / 96; 
+
+            if (backgroundType === 'white') {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, fullResolutionCanvas.width, fullResolutionCanvas.height);
+            }
+            
+            const allPointsForBounds = allNormalizedPoints.flat().flatMap(p => Object.values(p));
+            if (allPointsForBounds.length === 0) throw new Error('No valid points found in the data.');
+
+            const minX = Math.min(...allPointsForBounds.map(p => p.x));
+            const maxX = Math.max(...allPointsForBounds.map(p => p.x));
+            const minY = Math.min(...allPointsForBounds.map(p => p.y));
+            const maxY = Math.max(...allPointsForBounds.map(p => p.y));
+            
+            const padding = 100 * scaleFactor; 
+            const scale = Math.min((fullResolutionCanvas.width - 2 * padding) / (maxX - minX || 1), (fullResolutionCanvas.height - 2 * padding) / (maxY - minY || 1)) * 0.9;
+            const offsetX = fullResolutionCanvas.width / 2 - ((maxX + minX) / 2) * scale;
+            const offsetY = (fullResolutionCanvas.height - (120 * scaleFactor)) / 2 - ((maxY + minY) / 2) * scale;
+
+            // NEW: Draw background frames based on new controls
+            if (showBackground && frameStep > 0) {
+                ctx.globalAlpha = backgroundOpacity;
+                for (let i = 0; i < allNormalizedPoints.length; i += frameStep) {
+                    const points = allNormalizedPoints[i];
+                    if (points) {
+                        drawStickFigure(ctx, points, scale, offsetX, offsetY, backgroundFrameColor, 1.5 * scaleFactor);
+                    }
+                }
+            }
+            
+            // Draw highlighted frames
+            ctx.globalAlpha = 1.0;
+            const colors = { toe: document.getElementById('colorToe').value, mtp: document.getElementById('colorMtp').value, ankle: document.getElementById('colorAnkle').value, knee: document.getElementById('colorKnee').value, hip: document.getElementById('colorHip').value, iliac: document.getElementById('colorIliac').value };
+            const lineWidth = parseInt(document.getElementById('lineWidth').value) * scaleFactor;
+            const pointSize = parseInt(document.getElementById('pointSize').value) * scaleFactor;
+            
+            selectedFrames.forEach(frameNum => {
+                const points = allNormalizedPoints[frameNum];
+                if (points) drawStickFigure(ctx, points, scale, offsetX, offsetY, null, lineWidth, colors, pointSize);
+            });
+            
+            // Add title, labels, and legend
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = textColor;
+            const baseTextSize = parseInt(document.getElementById('textSize').value);
+            
+            ctx.font = `bold ${(baseTextSize + 6) * scaleFactor}px Inter, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillText(document.getElementById('plotTitle').value, fullResolutionCanvas.width / 2, 50 * scaleFactor);
+            ctx.font = `${baseTextSize * scaleFactor}px Inter, sans-serif`;
+            ctx.fillText(document.getElementById('xAxisLabel').value, fullResolutionCanvas.width / 2, fullResolutionCanvas.height - (80 * scaleFactor));
+            ctx.save();
+            ctx.translate(40 * scaleFactor, fullResolutionCanvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillText(document.getElementById('yAxisLabel').value, 0, 0);
+            ctx.restore();
+            
+            drawLegend(ctx, colors, fullResolutionCanvas.width, fullResolutionCanvas.height, pointSize, textColor, scaleFactor);
+
+            const displayCanvas = document.createElement('canvas');
+            const displayWidth = 800;
+            const displayHeight = 700;
+            displayCanvas.width = displayWidth;
+            displayCanvas.height = displayHeight;
+            const displayCtx = displayCanvas.getContext('2d');
+            
+            displayCtx.fillStyle = 'white';
+            displayCtx.fillRect(0, 0, displayWidth, displayHeight);
+            displayCtx.drawImage(fullResolutionCanvas, 0, 0, displayWidth, displayHeight);
+
+            displayCanvas.plotContext = { scale: scale * (displayWidth / fullResolutionCanvas.width), offsetX: offsetX * (displayWidth / fullResolutionCanvas.width), offsetY: offsetY * (displayHeight / fullResolutionCanvas.height) };
+
+            return { displayCanvas, fullResolutionCanvas };
+        }
+        
+        // --- Unchanged Functions (pasted for completeness) ---
         function updateSliderBackground(slider) {
             const value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
             slider.style.background = `linear-gradient(to right, #4f46e5 0%, #4f46e5 ${value}%, #e2e8f0 ${value}%, #e2e8f0 100%)`;
         }
-
         function updateImageSizeInfo(dpi) {
             const printWidthInches = 8;
             const printHeightInches = 7;
@@ -413,14 +419,17 @@
             const pixelHeight = printHeightInches * dpi;
             imageSizeInfo.textContent = `Image size: ${pixelWidth} x ${pixelHeight} pixels`;
         }
-
         function handleFrameTypeChange(e) {
-            const isRange = e.target.value === 'range';
-            startFrameInput.disabled = !isRange;
-            endFrameInput.disabled = !isRange;
-            individualFramesInput.disabled = isRange;
+            const frameType = e.target.value;
+            startFrameInput.disabled = frameType !== 'range';
+            endFrameInput.disabled = frameType !== 'range';
+            individualFramesInput.disabled = frameType !== 'individual';
+            if (frameType === 'interactive') {
+                interactiveFrameSelector.classList.remove('hidden');
+            } else {
+                interactiveFrameSelector.classList.add('hidden');
+            }
         }
-
         function processFile(file) {
             if (!file || !file.name.toLowerCase().endsWith('.csv')) {
                 showStatus('error', 'Please select a CSV file');
@@ -430,224 +439,95 @@
             reader.onload = (e) => parseCSV(e.target.result);
             reader.readAsText(file);
         }
-
         function parseCSV(csvText) {
             try {
                 const lines = csvText.split('\n').filter(line => line.trim());
                 if (lines.length < 3) throw new Error("CSV must have at least 3 rows.");
-                
                 const dataLines = lines.slice(2);
                 csvData = dataLines.map(line => line.split(','));
-
                 processData();
                 showStatus('success', `File loaded successfully! ${csvData.length} frames detected.`);
                 generateBtn.disabled = false;
+                buildInteractiveSelector();
             } catch (error) {
                 showStatus('error', 'Error parsing CSV: ' + error.message);
                 csvData = null;
                 generateBtn.disabled = true;
             }
         }
-
+        function buildInteractiveSelector() {
+            interactiveFrameSelector.innerHTML = '';
+            if (!csvData) return;
+            for (let i = 0; i < csvData.length; i++) {
+                const frameBox = document.createElement('div');
+                frameBox.className = 'frame-box';
+                frameBox.textContent = i;
+                frameBox.dataset.frame = i;
+                frameBox.addEventListener('click', () => {
+                    frameBox.classList.toggle('selected-frame');
+                });
+                interactiveFrameSelector.appendChild(frameBox);
+            }
+        }
         function processData() {
             const threshold = parseFloat(document.getElementById('threshold').value);
             validData = { toe: [], mtp: [], ankle: [], knee: [], hip: [], iliac: [] };
-            const bodyPartIndices = {
-                'iliac': [1, 2, 3], 'hip': [4, 5, 6], 'knee': [7, 8, 9],
-                'ankle': [10, 11, 12], 'mtp': [13, 14, 15], 'toe': [16, 17, 18]
-            };
-
+            const bodyPartIndices = { 'iliac': [1, 2, 3], 'hip': [4, 5, 6], 'knee': [7, 8, 9], 'ankle': [10, 11, 12], 'mtp': [13, 14, 15], 'toe': [16, 17, 18] };
             csvData.forEach((row, frameIdx) => {
                 for (const part in bodyPartIndices) {
                     const [x_idx, y_idx, l_idx] = bodyPartIndices[part];
                     if(row.length > l_idx) {
                         const likelihood = parseFloat(row[l_idx]);
                         if (likelihood > threshold) {
-                            validData[part][frameIdx] = {
-                                x: parseFloat(row[x_idx]),
-                                y: parseFloat(row[y_idx])
-                            };
+                            validData[part][frameIdx] = { x: parseFloat(row[x_idx]), y: parseFloat(row[y_idx]) };
                         }
                     }
                 }
             });
+            allNormalizedPoints = [];
+            for (let i = 0; i < csvData.length; i++) {
+                const points = getNormalizedPoints(i);
+                if (points) allNormalizedPoints[i] = points;
+            }
         }
-
         function getSelectedFrames() {
             const frameType = document.querySelector('input[name="frameType"]:checked').value;
             if (frameType === 'range') {
                 const start = parseInt(startFrameInput.value);
                 const end = parseInt(endFrameInput.value);
-                if (isNaN(start) || isNaN(end) || start >= end) {
-                    throw new Error('Invalid frame range selected.');
-                }
+                if (isNaN(start) || isNaN(end) || start >= end) throw new Error('Invalid frame range selected.');
                 return Array.from({ length: end - start + 1 }, (_, i) => i + start);
+            } else if (frameType === 'individual') {
+                const frames = individualFramesInput.value.split(',').map(f => parseInt(f.trim())).filter(f => !isNaN(f) && f >= 0);
+                if (frames.length === 0) throw new Error('Please enter valid, comma-separated frame numbers.');
+                return frames;
             } else {
-                 const frames = individualFramesInput.value.split(',')
-                    .map(f => parseInt(f.trim()))
-                    .filter(f => !isNaN(f) && f >= 0);
-                if (frames.length === 0) {
-                    throw new Error('Please enter valid, comma-separated frame numbers.');
-                }
+                const selectedElements = interactiveFrameSelector.querySelectorAll('.selected-frame');
+                const frames = Array.from(selectedElements).map(el => parseInt(el.dataset.frame));
+                if (frames.length === 0) throw new Error('No frames selected. Click on the frame numbers to select them.');
                 return frames;
             }
         }
-
         function getNormalizedPoints(frameNum) {
             const points = {};
             for (const part in validData) {
-                if (validData[part][frameNum]) {
-                    points[part] = validData[part][frameNum];
-                }
+                if (validData[part][frameNum]) points[part] = validData[part][frameNum];
             }
             if (Object.keys(points).length < 6 || !points.iliac) return null;
-            
             const refX = points.iliac.x;
             const refY = points.iliac.y;
-            
             const normalized = {};
             for (const part in points) {
                 normalized[part] = { x: points[part].x - refX, y: points[part].y - refY };
             }
             return normalized;
         }
-
-        function generateStaticVisualization() {
-            if (!csvData || !validData) return;
-            setProcessing(true, 'Generating static plot...');
-            
-            setTimeout(() => {
-                try {
-                    const canvas = generateStaticPlot();
-                    displayResults(canvas);
-                } catch (error) {
-                    console.error(error);
-                    showStatus('error', 'Error generating plot: ' + error.message);
-                } finally {
-                    setProcessing(false);
-                }
-            }, 100);
-        }
-
-        function generateStaticPlot() {
-            // Get user settings
-            const dpi = parseInt(dpiSlider.value);
-            const backgroundType = document.getElementById('backgroundType').value;
-            const textColor = document.getElementById('textColor').value;
-            
-            // Define a target print size in inches (8x7 inches)
-            const printWidthInches = 8;
-            const printHeightInches = 7;
-            
-            const canvas = document.createElement('canvas');
-            canvas.width = printWidthInches * dpi;
-            canvas.height = printHeightInches * dpi;
-            const ctx = canvas.getContext('2d');
-
-            // Scaling factor for all drawing operations
-            const scaleFactor = dpi / 96; // 96 is a common base screen DPI
-
-            // Set background based on user choice
-            if (backgroundType === 'white') {
-                ctx.fillStyle = 'white';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            // For transparent background, we don't fill the canvas
-            
-            const selectedFrames = getSelectedFrames();
-            if (selectedFrames.length === 0) throw new Error('No valid frames selected');
-
-            let allPoints = [];
-            for (let i = 0; i < csvData.length; i++) {
-                const points = getNormalizedPoints(i);
-                if (points) allPoints.push(...Object.values(points));
-            }
-            if (allPoints.length === 0) throw new Error('No valid points found in the data.');
-
-            const minX = Math.min(...allPoints.map(p => p.x));
-            const maxX = Math.max(...allPoints.map(p => p.x));
-            const minY = Math.min(...allPoints.map(p => p.y));
-            const maxY = Math.max(...allPoints.map(p => p.y));
-            
-            const padding = 100 * scaleFactor; 
-            const scale = Math.min((canvas.width - 2 * padding) / (maxX - minX || 1), (canvas.height - 2 * padding) / (maxY - minY || 1)) * 0.9;
-            const offsetX = canvas.width / 2 - ((maxX + minX) / 2) * scale;
-            const offsetY = (canvas.height - (120 * scaleFactor)) / 2 - ((maxY + minY) / 2) * scale;
-
-            // Draw all frames as background
-            ctx.globalAlpha = 0.05;
-            for (let i = 0; i < csvData.length; i++) {
-                const points = getNormalizedPoints(i);
-                if (points) drawStickFigure(ctx, points, scale, offsetX, offsetY, '#94a3b8', 1 * scaleFactor);
-            }
-            
-            // Draw highlighted frames
-            ctx.globalAlpha = 1.0;
-            const colors = {
-                toe: document.getElementById('colorToe').value, 
-                mtp: document.getElementById('colorMtp').value,
-                ankle: document.getElementById('colorAnkle').value, 
-                knee: document.getElementById('colorKnee').value,
-                hip: document.getElementById('colorHip').value, 
-                iliac: document.getElementById('colorIliac').value
-            };
-            const lineWidth = parseInt(document.getElementById('lineWidth').value) * scaleFactor;
-            const pointSize = parseInt(document.getElementById('pointSize').value) * scaleFactor;
-            
-            selectedFrames.forEach(frameNum => {
-                const points = getNormalizedPoints(frameNum);
-                if (points) drawStickFigure(ctx, points, scale, offsetX, offsetY, null, lineWidth, colors, pointSize);
-            });
-            
-            // Add title, labels, and legend
-            ctx.globalAlpha = 1;
-            ctx.fillStyle = textColor;
-            const baseTextSize = parseInt(document.getElementById('textSize').value);
-            
-            // Title
-            ctx.font = `bold ${(baseTextSize + 6) * scaleFactor}px Inter, sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.fillText(document.getElementById('plotTitle').value, canvas.width / 2, 50 * scaleFactor);
-
-            // Axis Labels
-            ctx.font = `${baseTextSize * scaleFactor}px Inter, sans-serif`;
-            ctx.fillText(document.getElementById('xAxisLabel').value, canvas.width / 2, canvas.height - (80 * scaleFactor));
-            ctx.save();
-            ctx.translate(40 * scaleFactor, canvas.height / 2);
-            ctx.rotate(-Math.PI / 2);
-            ctx.textAlign = 'center';
-            ctx.fillText(document.getElementById('yAxisLabel').value, 0, 0);
-            ctx.restore();
-            
-            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize, textColor, scaleFactor);
-
-            // Create a downscaled canvas for display purposes
-            const displayCanvas = document.createElement('canvas');
-            displayCanvas.width = 800;
-            displayCanvas.height = 700;
-            const displayCtx = displayCanvas.getContext('2d');
-            
-            // For display, always use white background for better visibility
-            displayCtx.fillStyle = 'white';
-            displayCtx.fillRect(0, 0, 800, 700);
-            displayCtx.drawImage(canvas, 0, 0, 800, 700);
-
-            // Attach the full-resolution data URL to the display canvas for download
-            displayCanvas.fullResolutionDataUrl = canvas.toDataURL('image/png');
-            displayCanvas.downloadSettings = { dpi, backgroundType, textColor };
-
-            return displayCanvas;
-        }
-
         function drawStickFigure(ctx, points, scale, offsetX, offsetY, overrideColor, lineWidth, pointColors = null, pointSize = 6) {
             const segments = [['toe', 'mtp'], ['mtp', 'ankle'], ['ankle', 'knee'], ['knee', 'hip'], ['hip', 'iliac']];
-            
             ctx.lineCap = 'round';
             ctx.lineWidth = lineWidth;
-            
             segments.forEach(([part1, part2]) => {
-                const p1 = points[part1];
-                const p2 = points[part2];
+                const p1 = points[part1], p2 = points[part2];
                 if (p1 && p2) {
                     ctx.strokeStyle = overrideColor || (pointColors ? pointColors[part1] : 'black');
                     ctx.beginPath();
@@ -656,69 +536,27 @@
                     ctx.stroke();
                 }
             });
-            
             if (pointColors && pointSize > 0) {
                 for (const part in points) {
                     if (pointColors[part]) {
-                        ctx.fillStyle = pointColors[part];
-                        ctx.strokeStyle = pointColors[part]; // Set stroke style for iliac cross
+                        ctx.fillStyle = ctx.strokeStyle = pointColors[part];
                         drawMarker(ctx, part, points[part].x * scale + offsetX, points[part].y * scale + offsetY, pointSize);
                     }
                 }
             }
         }
-
         function drawMarker(ctx, part, x, y, size) {
             const s = size / 2;
             ctx.beginPath();
             switch (part) {
-                case 'toe': 
-                    ctx.arc(x, y, s, 0, 2 * Math.PI); 
-                    ctx.fill();
-                    break;
-                case 'mtp': 
-                    ctx.rect(x - s, y - s, size, size); 
-                    ctx.fill();
-                    break;
-                case 'ankle': 
-                    ctx.moveTo(x, y - s); 
-                    ctx.lineTo(x + s, y); 
-                    ctx.lineTo(x, y + s); 
-                    ctx.lineTo(x - s, y); 
-                    ctx.closePath(); 
-                    ctx.fill();
-                    break;
-                case 'knee': 
-                    ctx.moveTo(x, y - s); 
-                    ctx.lineTo(x + s, y + s); 
-                    ctx.lineTo(x - s, y + s); 
-                    ctx.closePath(); 
-                    ctx.fill();
-                    break;
-                case 'hip': 
-                    ctx.moveTo(x, y + s); 
-                    ctx.lineTo(x + s, y - s); 
-                    ctx.lineTo(x - s, y - s); 
-                    ctx.closePath(); 
-                    ctx.fill();
-                    break;
-                case 'iliac': 
-                    // Draw cross using the correct color - save and restore stroke style
-                    const currentFillStyle = ctx.fillStyle;
-                    ctx.lineWidth = Math.max(2, size / 4);
-                    ctx.beginPath();
-                    ctx.moveTo(x - s, y); 
-                    ctx.lineTo(x + s, y); 
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.moveTo(x, y - s); 
-                    ctx.lineTo(x, y + s); 
-                    ctx.stroke();
-                    ctx.fillStyle = currentFillStyle; // Restore fill style
-                    break;
+                case 'toe': ctx.arc(x, y, s, 0, 2 * Math.PI); ctx.fill(); break;
+                case 'mtp': ctx.rect(x - s, y - s, size, size); ctx.fill(); break;
+                case 'ankle': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.lineTo(x - s, y); ctx.closePath(); ctx.fill(); break;
+                case 'knee': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y + s); ctx.lineTo(x - s, y + s); ctx.closePath(); ctx.fill(); break;
+                case 'hip': ctx.moveTo(x, y + s); ctx.lineTo(x + s, y - s); ctx.lineTo(x - s, y - s); ctx.closePath(); ctx.fill(); break;
+                case 'iliac': const currentFillStyle = ctx.fillStyle; ctx.lineWidth = Math.max(2, size / 4); ctx.beginPath(); ctx.moveTo(x - s, y); ctx.lineTo(x + s, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y - s); ctx.lineTo(x, y + s); ctx.stroke(); ctx.fillStyle = currentFillStyle; break;
             }
         }
-
         function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize, textColor, scaleFactor) {
             ctx.font = `${12 * scaleFactor}px Inter, sans-serif`;
             ctx.textAlign = 'left';
@@ -726,62 +564,122 @@
             const parts = ['toe', 'mtp', 'ankle', 'knee', 'hip', 'iliac'];
             const itemWidth = 90 * scaleFactor;
             let startX = (canvasWidth - (parts.length * itemWidth)) / 2;
-
             parts.forEach(part => {
                 ctx.fillStyle = colors[part];
                 ctx.strokeStyle = colors[part];
                 ctx.lineWidth = 2 * scaleFactor;
                 drawMarker(ctx, part, startX, legendY, pointSize);
-                
                 ctx.fillStyle = textColor;
                 ctx.fillText(part.charAt(0).toUpperCase() + part.slice(1), startX + (15 * scaleFactor), legendY + (4 * scaleFactor));
                 startX += itemWidth;
             });
         }
-
-        function displayResults(displayCanvas) {
+        function displayResults(displayCanvas, fullResolutionCanvas) {
             results.innerHTML = '';
             const resultItem = document.createElement('div');
             resultItem.className = 'result-item p-4';
-
             const header = document.createElement('div');
             header.className = 'result-header flex justify-between items-center mb-4';
-            header.innerHTML = '<h3 class="text-lg font-semibold text-slate-800">📊 Static Gait Plot</h3>';
-
-            const { dpi, backgroundType } = displayCanvas.downloadSettings;
+            header.innerHTML = '<h3 class="text-lg font-semibold text-slate-800">📊 Interactive Plot (Hover to Preview, Click to Edit)</h3>';
             const downloadBtn = document.createElement('a');
             downloadBtn.className = 'btn btn-success inline-flex items-center text-sm py-2 px-4';
-            downloadBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>Download PNG (${dpi} DPI, ${backgroundType})`;
-            downloadBtn.download = `gait_static_plot_${dpi}dpi_${backgroundType}.png`;
-            downloadBtn.href = displayCanvas.fullResolutionDataUrl;
-            
+            downloadBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>Download PNG`;
+            downloadBtn.download = `gait_static_plot.png`;
+            downloadBtn.href = fullResolutionCanvas.toDataURL('image/png');
             header.appendChild(downloadBtn);
-            resultItem.appendChild(header);
-            
-            // Add canvas with proper styling
-            displayCanvas.style.maxWidth = '100%';
-            displayCanvas.style.height = 'auto';
-            displayCanvas.style.borderRadius = '0.5rem';
+            const plotContainer = document.createElement('div');
+            plotContainer.id = 'plot-container';
             displayCanvas.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-            
-            resultItem.appendChild(displayCanvas);
+            displayCanvas.style.borderRadius = '0.5rem';
+            const hoverCanvas = document.createElement('canvas');
+            hoverCanvas.id = 'hover-canvas';
+            hoverCanvas.width = displayCanvas.width;
+            hoverCanvas.height = displayCanvas.height;
+            const tooltip = document.createElement('div');
+            tooltip.id = 'tooltip';
+            plotContainer.append(displayCanvas, hoverCanvas, tooltip);
+            resultItem.append(header, plotContainer);
             results.appendChild(resultItem);
+            plotContainer.addEventListener('mousemove', e => handleCanvasHover(e, displayCanvas.plotContext));
+            plotContainer.addEventListener('mouseleave', handleCanvasLeave);
+            plotContainer.addEventListener('click', e => handleCanvasClick(e, displayCanvas.plotContext));
         }
-
+        function findNearestFrame(mouseX, mouseY, plotContext) {
+            const { scale, offsetX, offsetY } = plotContext;
+            const dataX = (mouseX - offsetX) / scale;
+            const dataY = (mouseY - offsetY) / scale;
+            let bestMatch = { frameIndex: -1, distance: Infinity };
+            allNormalizedPoints.forEach((points, frameIndex) => {
+                if (points && points.hip) {
+                    const dist = Math.hypot(points.hip.x - dataX, points.hip.y - dataY);
+                    if (dist < bestMatch.distance) {
+                        bestMatch = { frameIndex, distance: dist };
+                    }
+                }
+            });
+            return bestMatch.distance < 50 ? bestMatch.frameIndex : -1;
+        }
+        function handleCanvasHover(event, plotContext) {
+            const hoverCanvas = document.getElementById('hover-canvas');
+            const tooltip = document.getElementById('tooltip');
+            if (!hoverCanvas || !tooltip) return;
+            const rect = hoverCanvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+            const frameIndex = findNearestFrame(mouseX, mouseY, plotContext);
+            const hoverCtx = hoverCanvas.getContext('2d');
+            hoverCtx.clearRect(0, 0, hoverCanvas.width, hoverCanvas.height);
+            if (frameIndex !== -1) {
+                const points = allNormalizedPoints[frameIndex];
+                const { scale, offsetX, offsetY } = plotContext;
+                drawStickFigure(hoverCtx, points, scale, offsetX, offsetY, 'rgba(79, 70, 229, 0.5)', 3);
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${mouseX}px`;
+                tooltip.style.top = `${mouseY}px`;
+                tooltip.textContent = `Frame: ${frameIndex}`;
+            } else {
+                tooltip.style.display = 'none';
+            }
+        }
+        function handleCanvasLeave() {
+            const hoverCanvas = document.getElementById('hover-canvas');
+            const tooltip = document.getElementById('tooltip');
+            if (!hoverCanvas || !tooltip) return;
+            hoverCanvas.getContext('2d').clearRect(0, 0, hoverCanvas.width, hoverCanvas.height);
+            tooltip.style.display = 'none';
+        }
+        function handleCanvasClick(event, plotContext) {
+            const rect = event.target.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+            const frameIndex = findNearestFrame(mouseX, mouseY, plotContext);
+            if (frameIndex !== -1) {
+                const frameIndexInSelection = selectedFrames.indexOf(frameIndex);
+                if (frameIndexInSelection > -1) {
+                    selectedFrames.splice(frameIndexInSelection, 1);
+                } else {
+                    selectedFrames.push(frameIndex);
+                    selectedFrames.sort((a, b) => a - b);
+                }
+                const frameBox = interactiveFrameSelector.querySelector(`.frame-box[data-frame='${frameIndex}']`);
+                if(frameBox) frameBox.classList.toggle('selected-frame');
+                generateStaticVisualization(false);
+            }
+        }
         function setProcessing(processing, message = '') {
             generateBtn.disabled = processing;
             if (processing) {
                 generateBtn.innerHTML = '<div class="spinner mr-2"></div> Processing...';
                 processingStatus.innerHTML = `<div class="status info p-4 rounded-md">${message}</div>`;
             } else {
-                generateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H9z" clip-rule="evenodd" /></svg>Generate Static Plot';
+                generateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H9z" clip-rule="evenodd" /></svg>Generate Plot';
                 processingStatus.innerHTML = '';
             }
         }
-
         function showStatus(type, message) {
             fileStatus.innerHTML = `<div class="status ${type} p-4 rounded-md">${message}</div>`;
         }
+
     </script>
 </body>
 </html>
