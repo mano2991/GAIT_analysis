@@ -35,6 +35,7 @@
 
         .upload-area {
             border-color: #cbd5e1;
+            border: 2px dashed #cbd5e1;
         }
 
         .upload-area:hover {
@@ -47,10 +48,11 @@
         }
 
         .form-group input, .form-group select {
-            border-color: #cbd5e1;
+            border: 1px solid #cbd5e1;
             border-radius: 0.5rem;
             padding: 0.6rem 0.8rem;
             background-color: #f8fafc;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         
         .form-group input:focus, .form-group select:focus {
@@ -61,9 +63,15 @@
         
         .btn {
             background-color: #4f46e5;
+            color: white;
+            border: none;
             border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.2s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn:hover {
@@ -91,7 +99,7 @@
             -webkit-appearance: none;
             width: 32px;
             height: 32px;
-            border: none;
+            border: 1px solid #e2e8f0;
             border-radius: 50%;
             padding: 0;
             cursor: pointer;
@@ -101,17 +109,36 @@
             border-radius: 50%;
         }
         .color-picker input[type="color"]::-webkit-color-swatch {
-            border: 1px solid #e2e8f0;
+            border: none;
             border-radius: 50%;
         }
 
-        .status.success { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-        .status.error { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-        .status.info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .status.success { 
+            background-color: #f0fdf4; 
+            color: #15803d; 
+            border: 1px solid #bbf7d0; 
+            border-radius: 0.5rem;
+        }
+        .status.error { 
+            background-color: #fef2f2; 
+            color: #b91c1c; 
+            border: 1px solid #fecaca; 
+            border-radius: 0.5rem;
+        }
+        .status.info { 
+            background-color: #eff6ff; 
+            color: #1d4ed8; 
+            border: 1px solid #bfdbfe; 
+            border-radius: 0.5rem;
+        }
         
         .spinner {
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
@@ -127,21 +154,26 @@
         }
 
         .dpi-slider {
+            -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #e2e8f0 0%, #4f46e5 0%);
             outline: none;
+            position: relative;
         }
 
         .dpi-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
             appearance: none;
             width: 20px;
             height: 20px;
             border-radius: 50%;
             background: #4f46e5;
             cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .dpi-slider::-moz-range-thumb {
@@ -150,7 +182,36 @@
             border-radius: 50%;
             background: #4f46e5;
             cursor: pointer;
-            border: none;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slider-container {
+            position: relative;
+            margin: 0.5rem 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .radio-group {
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 0.25rem;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -178,12 +239,12 @@
                 <div class="panel rounded-xl p-6">
                     <h2 class="text-xl font-semibold pb-4 mb-4">⚙️ Settings</h2>
                     
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label class="text-sm font-medium">Plot Title</label>
                         <input type="text" id="plotTitle" value="Gait Analysis Plot" class="mt-1 w-full">
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4 form-group">
+                    <div class="grid grid-cols-2 gap-4 form-group mb-4">
                          <div>
                             <label class="text-sm font-medium">X-Axis Label</label>
                             <input type="text" id="xAxisLabel" value="X - Coordinate" class="mt-1 w-full">
@@ -194,7 +255,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group frame-selection">
+                    <div class="form-group frame-selection mb-4">
                         <label class="text-sm font-bold mb-2 block">Frame Selection</label>
                         <div class="radio-group">
                             <label class="text-sm"><input type="radio" name="frameType" value="range" checked> Frame Range</label>
@@ -215,18 +276,26 @@
                         <input type="text" id="individualFrames" placeholder="e.g., 30, 41, 55, 92" class="mt-1 w-full" disabled>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 form-group">
+                    <div class="grid grid-cols-3 gap-4 form-group mb-4">
                         <div><label class="text-sm font-medium">Point Size</label><input type="number" id="pointSize" value="8" min="3" max="20" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Line Width</label><input type="number" id="lineWidth" value="5" min="1" max="15" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Text Size</label><input type="number" id="textSize" value="14" min="8" max="24" class="mt-1 w-full"></div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label class="text-sm font-medium">Likelihood Threshold</label>
                         <input type="number" id="threshold" value="0.5" min="0" max="1" step="0.1" class="mt-1 w-full">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
+                        <label class="text-sm font-medium mb-2 block">Text Color</label>
+                        <div class="color-picker text-sm flex items-center">
+                            <span>Labels & Title:</span>
+                            <input type="color" id="textColor" value="#1e293b" class="ml-auto">
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
                         <label class="text-sm font-medium">Body Part Colors</label>
                         <div class="grid grid-cols-2 gap-x-6 gap-y-4 mt-2">
                             <div class="color-picker text-sm flex items-center"><span>Toe:</span><input type="color" id="colorToe" value="#ff0000" class="ml-auto"></div>
@@ -239,13 +308,19 @@
                     </div>
 
                     <!-- Download Options -->
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label class="text-sm font-medium mb-3 block">Download Options</label>
                         <div class="download-options">
                             <div class="grid grid-cols-2 gap-4 mb-4">
                                 <div>
-                                    <label class="text-xs font-medium text-gray-600 mb-1 block">DPI Quality</label>
-                                    <input type="range" id="dpiSlider" min="100" max="600" value="300" step="50" class="dpi-slider">
+                                    <label class="text-xs font-medium text-gray-600 mb-2 block">DPI Quality</label>
+                                    <div class="slider-container">
+                                        <input type="range" id="dpiSlider" min="100" max="600" value="300" step="50" class="dpi-slider">
+                                        <div class="slider-labels">
+                                            <span>100</span>
+                                            <span>600</span>
+                                        </div>
+                                    </div>
                                     <div class="text-center text-sm font-semibold text-gray-700 mt-1" id="dpiValue">300 DPI</div>
                                 </div>
                                 <div>
@@ -315,14 +390,21 @@
 
             // DPI slider event listener
             dpiSlider.addEventListener('input', function() {
-                const dpi = this.value;
+                const dpi = parseInt(this.value);
                 dpiValue.textContent = `${dpi} DPI`;
                 updateImageSizeInfo(dpi);
+                updateSliderBackground(this);
             });
 
-            // Initialize image size info
+            // Initialize image size info and slider
             updateImageSizeInfo(300);
+            updateSliderBackground(dpiSlider);
         });
+
+        function updateSliderBackground(slider) {
+            const value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+            slider.style.background = `linear-gradient(to right, #4f46e5 0%, #4f46e5 ${value}%, #e2e8f0 ${value}%, #e2e8f0 100%)`;
+        }
 
         function updateImageSizeInfo(dpi) {
             const printWidthInches = 8;
@@ -451,6 +533,7 @@
             // Get user settings
             const dpi = parseInt(dpiSlider.value);
             const backgroundType = document.getElementById('backgroundType').value;
+            const textColor = document.getElementById('textColor').value;
             
             // Define a target print size in inches (8x7 inches)
             const printWidthInches = 8;
@@ -501,9 +584,12 @@
             // Draw highlighted frames
             ctx.globalAlpha = 1.0;
             const colors = {
-                toe: document.getElementById('colorToe').value, mtp: document.getElementById('colorMtp').value,
-                ankle: document.getElementById('colorAnkle').value, knee: document.getElementById('colorKnee').value,
-                hip: document.getElementById('colorHip').value, iliac: document.getElementById('colorIliac').value
+                toe: document.getElementById('colorToe').value, 
+                mtp: document.getElementById('colorMtp').value,
+                ankle: document.getElementById('colorAnkle').value, 
+                knee: document.getElementById('colorKnee').value,
+                hip: document.getElementById('colorHip').value, 
+                iliac: document.getElementById('colorIliac').value
             };
             const lineWidth = parseInt(document.getElementById('lineWidth').value) * scaleFactor;
             const pointSize = parseInt(document.getElementById('pointSize').value) * scaleFactor;
@@ -515,7 +601,7 @@
             
             // Add title, labels, and legend
             ctx.globalAlpha = 1;
-            ctx.fillStyle = backgroundType === 'transparent' ? '#1e293b' : '#1e293b';
+            ctx.fillStyle = textColor;
             const baseTextSize = parseInt(document.getElementById('textSize').value);
             
             // Title
@@ -533,7 +619,7 @@
             ctx.fillText(document.getElementById('yAxisLabel').value, 0, 0);
             ctx.restore();
             
-            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize, backgroundType);
+            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize, textColor, scaleFactor);
 
             // Create a downscaled canvas for display purposes
             const displayCanvas = document.createElement('canvas');
@@ -548,7 +634,7 @@
 
             // Attach the full-resolution data URL to the display canvas for download
             displayCanvas.fullResolutionDataUrl = canvas.toDataURL('image/png');
-            displayCanvas.downloadSettings = { dpi, backgroundType };
+            displayCanvas.downloadSettings = { dpi, backgroundType, textColor };
 
             return displayCanvas;
         }
@@ -575,6 +661,7 @@
                 for (const part in points) {
                     if (pointColors[part]) {
                         ctx.fillStyle = pointColors[part];
+                        ctx.strokeStyle = pointColors[part]; // Set stroke style for iliac cross
                         drawMarker(ctx, part, points[part].x * scale + offsetX, points[part].y * scale + offsetY, pointSize);
                     }
                 }
@@ -585,18 +672,54 @@
             const s = size / 2;
             ctx.beginPath();
             switch (part) {
-                case 'toe': ctx.arc(x, y, s, 0, 2 * Math.PI); break;
-                case 'mtp': ctx.rect(x - s, y - s, size, size); break;
-                case 'ankle': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.lineTo(x - s, y); ctx.closePath(); break;
-                case 'knee': ctx.moveTo(x, y - s); ctx.lineTo(x + s, y + s); ctx.lineTo(x - s, y + s); ctx.closePath(); break;
-                case 'hip': ctx.moveTo(x, y + s); ctx.lineTo(x + s, y - s); ctx.lineTo(x - s, y - s); ctx.closePath(); break;
-                case 'iliac': ctx.moveTo(x - s, y); ctx.lineTo(x + s, y); ctx.moveTo(x, y - s); ctx.lineTo(x, y + s); ctx.stroke(); return; 
+                case 'toe': 
+                    ctx.arc(x, y, s, 0, 2 * Math.PI); 
+                    ctx.fill();
+                    break;
+                case 'mtp': 
+                    ctx.rect(x - s, y - s, size, size); 
+                    ctx.fill();
+                    break;
+                case 'ankle': 
+                    ctx.moveTo(x, y - s); 
+                    ctx.lineTo(x + s, y); 
+                    ctx.lineTo(x, y + s); 
+                    ctx.lineTo(x - s, y); 
+                    ctx.closePath(); 
+                    ctx.fill();
+                    break;
+                case 'knee': 
+                    ctx.moveTo(x, y - s); 
+                    ctx.lineTo(x + s, y + s); 
+                    ctx.lineTo(x - s, y + s); 
+                    ctx.closePath(); 
+                    ctx.fill();
+                    break;
+                case 'hip': 
+                    ctx.moveTo(x, y + s); 
+                    ctx.lineTo(x + s, y - s); 
+                    ctx.lineTo(x - s, y - s); 
+                    ctx.closePath(); 
+                    ctx.fill();
+                    break;
+                case 'iliac': 
+                    // Draw cross using the correct color - save and restore stroke style
+                    const currentFillStyle = ctx.fillStyle;
+                    ctx.lineWidth = Math.max(2, size / 4);
+                    ctx.beginPath();
+                    ctx.moveTo(x - s, y); 
+                    ctx.lineTo(x + s, y); 
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(x, y - s); 
+                    ctx.lineTo(x, y + s); 
+                    ctx.stroke();
+                    ctx.fillStyle = currentFillStyle; // Restore fill style
+                    break;
             }
-            ctx.fill();
         }
 
-       function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize) {
-            const scaleFactor = canvasWidth / 800; // Use canvas width to determine scale
+        function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize, textColor, scaleFactor) {
             ctx.font = `${12 * scaleFactor}px Inter, sans-serif`;
             ctx.textAlign = 'left';
             const legendY = canvasHeight - (35 * scaleFactor);
@@ -610,7 +733,7 @@
                 ctx.lineWidth = 2 * scaleFactor;
                 drawMarker(ctx, part, startX, legendY, pointSize);
                 
-                ctx.fillStyle = '#334155';
+                ctx.fillStyle = textColor;
                 ctx.fillText(part.charAt(0).toUpperCase() + part.slice(1), startX + (15 * scaleFactor), legendY + (4 * scaleFactor));
                 startX += itemWidth;
             });
@@ -625,31 +748,39 @@
             header.className = 'result-header flex justify-between items-center mb-4';
             header.innerHTML = '<h3 class="text-lg font-semibold text-slate-800">📊 Static Gait Plot</h3>';
 
+            const { dpi, backgroundType } = displayCanvas.downloadSettings;
             const downloadBtn = document.createElement('a');
             downloadBtn.className = 'btn btn-success inline-flex items-center text-sm py-2 px-4';
-            downloadBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>Download PNG (300 DPI)';
-            downloadBtn.download = 'gait_static_plot_300dpi.png';
+            downloadBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>Download PNG (${dpi} DPI, ${backgroundType})`;
+            downloadBtn.download = `gait_static_plot_${dpi}dpi_${backgroundType}.png`;
             downloadBtn.href = displayCanvas.fullResolutionDataUrl;
             
             header.appendChild(downloadBtn);
             resultItem.appendChild(header);
-            resultItem.appendChild(displayCanvas); // Show the smaller canvas
+            
+            // Add canvas with proper styling
+            displayCanvas.style.maxWidth = '100%';
+            displayCanvas.style.height = 'auto';
+            displayCanvas.style.borderRadius = '0.5rem';
+            displayCanvas.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            
+            resultItem.appendChild(displayCanvas);
             results.appendChild(resultItem);
         }
 
         function setProcessing(processing, message = '') {
             generateBtn.disabled = processing;
             if (processing) {
-                generateBtn.innerHTML = '<div class="spinner w-5 h-5 border-2"></div> Processing...';
+                generateBtn.innerHTML = '<div class="spinner mr-2"></div> Processing...';
                 processingStatus.innerHTML = `<div class="status info p-4 rounded-md">${message}</div>`;
             } else {
-                generateBtn.innerHTML = '🎨 Generate Static Plot';
+                generateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H9z" clip-rule="evenodd" /></svg>Generate Static Plot';
                 processingStatus.innerHTML = '';
             }
         }
 
         function showStatus(type, message) {
-            fileStatus.innerHTML = `<div class="status p-4 rounded-md ${type}">${message}</div>`;
+            fileStatus.innerHTML = `<div class="status ${type} p-4 rounded-md">${message}</div>`;
         }
     </script>
 </body>
