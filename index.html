@@ -48,9 +48,9 @@
 
         .form-group input, .form-group select {
             border-color: #cbd5e1;
-            border-radius: 0.5rem; /* Rounded corners for inputs */
+            border-radius: 0.5rem;
             padding: 0.6rem 0.8rem;
-            background-color: #f8fafc; /* Light grey background for inputs */
+            background-color: #f8fafc;
         }
         
         .form-group input:focus, .form-group select:focus {
@@ -92,7 +92,7 @@
             width: 32px;
             height: 32px;
             border: none;
-            border-radius: 50%; /* Makes the color picker circular */
+            border-radius: 50%;
             padding: 0;
             cursor: pointer;
         }
@@ -105,7 +105,6 @@
             border-radius: 50%;
         }
 
-
         .status.success { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
         .status.error { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
         .status.info { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
@@ -117,6 +116,41 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        .download-options {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .dpi-slider {
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+        }
+
+        .dpi-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+        }
+
+        .dpi-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+            border: none;
         }
     </style>
 </head>
@@ -133,8 +167,7 @@
                 <div class="panel rounded-xl p-6">
                     <h2 class="text-xl font-semibold pb-4 mb-4">📁 File Upload</h2>
                     <div class="upload-area rounded-lg p-10 text-center cursor-pointer" id="uploadArea">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4
- 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <p class="mt-2 text-sm text-gray-600">Click to upload or drag & drop</p>
                         <p class="text-xs text-gray-500">CSV files only</p>
                         <input type="file" id="csvFile" accept=".csv" class="hidden">
@@ -147,10 +180,10 @@
                     
                     <div class="form-group">
                         <label class="text-sm font-medium">Plot Title</label>
-                        <input type="text" id="plotTitle" value=" Gait Analysis Plot" class="mt-1 w-full">
+                        <input type="text" id="plotTitle" value="Gait Analysis Plot" class="mt-1 w-full">
                     </div>
 
-                    <div class="grid-2 form-group">
+                    <div class="grid grid-cols-2 gap-4 form-group">
                          <div>
                             <label class="text-sm font-medium">X-Axis Label</label>
                             <input type="text" id="xAxisLabel" value="X - Coordinate" class="mt-1 w-full">
@@ -182,7 +215,7 @@
                         <input type="text" id="individualFrames" placeholder="e.g., 30, 41, 55, 92" class="mt-1 w-full" disabled>
                     </div>
 
-                    <div class="grid-3 form-group">
+                    <div class="grid grid-cols-3 gap-4 form-group">
                         <div><label class="text-sm font-medium">Point Size</label><input type="number" id="pointSize" value="8" min="3" max="20" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Line Width</label><input type="number" id="lineWidth" value="5" min="1" max="15" class="mt-1 w-full"></div>
                         <div><label class="text-sm font-medium">Text Size</label><input type="number" id="textSize" value="14" min="8" max="24" class="mt-1 w-full"></div>
@@ -202,6 +235,30 @@
                             <div class="color-picker text-sm flex items-center"><span>Knee:</span><input type="color" id="colorKnee" value="#0000ff" class="ml-auto"></div>
                             <div class="color-picker text-sm flex items-center"><span>Hip:</span><input type="color" id="colorHip" value="#800080" class="ml-auto"></div>
                             <div class="color-picker text-sm flex items-center"><span>Iliac:</span><input type="color" id="colorIliac" value="#000000" class="ml-auto"></div>
+                        </div>
+                    </div>
+
+                    <!-- Download Options -->
+                    <div class="form-group">
+                        <label class="text-sm font-medium mb-3 block">Download Options</label>
+                        <div class="download-options">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600 mb-1 block">DPI Quality</label>
+                                    <input type="range" id="dpiSlider" min="100" max="600" value="300" step="50" class="dpi-slider">
+                                    <div class="text-center text-sm font-semibold text-gray-700 mt-1" id="dpiValue">300 DPI</div>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600 mb-1 block">Background</label>
+                                    <select id="backgroundType" class="w-full text-sm">
+                                        <option value="white">White Background</option>
+                                        <option value="transparent">Transparent Background</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-xs text-gray-500 mb-2">
+                                <span id="imageSizeInfo">Image size: ~1600 x 1400 pixels</span>
+                            </div>
                         </div>
                     </div>
 
@@ -242,6 +299,9 @@
         const startFrameInput = document.getElementById('startFrame');
         const endFrameInput = document.getElementById('endFrame');
         const individualFramesInput = document.getElementById('individualFrames');
+        const dpiSlider = document.getElementById('dpiSlider');
+        const dpiValue = document.getElementById('dpiValue');
+        const imageSizeInfo = document.getElementById('imageSizeInfo');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -252,7 +312,25 @@
             document.querySelectorAll('input[name="frameType"]').forEach(radio => {
                 radio.addEventListener('change', handleFrameTypeChange);
             });
+
+            // DPI slider event listener
+            dpiSlider.addEventListener('input', function() {
+                const dpi = this.value;
+                dpiValue.textContent = `${dpi} DPI`;
+                updateImageSizeInfo(dpi);
+            });
+
+            // Initialize image size info
+            updateImageSizeInfo(300);
         });
+
+        function updateImageSizeInfo(dpi) {
+            const printWidthInches = 8;
+            const printHeightInches = 7;
+            const pixelWidth = printWidthInches * dpi;
+            const pixelHeight = printHeightInches * dpi;
+            imageSizeInfo.textContent = `Image size: ${pixelWidth} x ${pixelHeight} pixels`;
+        }
 
         function handleFrameTypeChange(e) {
             const isRange = e.target.value === 'range';
@@ -370,9 +448,11 @@
         }
 
         function generateStaticPlot() {
-            // --- High-Resolution Canvas Setup ---
-            const dpi = 300;
-            // Define a target print size in inches (e.g., 8x7 inches)
+            // Get user settings
+            const dpi = parseInt(dpiSlider.value);
+            const backgroundType = document.getElementById('backgroundType').value;
+            
+            // Define a target print size in inches (8x7 inches)
             const printWidthInches = 8;
             const printHeightInches = 7;
             
@@ -381,11 +461,15 @@
             canvas.height = printHeightInches * dpi;
             const ctx = canvas.getContext('2d');
 
-            // Scaling factor for all drawing operations to match the high DPI
+            // Scaling factor for all drawing operations
             const scaleFactor = dpi / 96; // 96 is a common base screen DPI
 
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Set background based on user choice
+            if (backgroundType === 'white') {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            // For transparent background, we don't fill the canvas
             
             const selectedFrames = getSelectedFrames();
             if (selectedFrames.length === 0) throw new Error('No valid frames selected');
@@ -431,11 +515,11 @@
             
             // Add title, labels, and legend
             ctx.globalAlpha = 1;
-            ctx.fillStyle = '#1e293b';
+            ctx.fillStyle = backgroundType === 'transparent' ? '#1e293b' : '#1e293b';
             const baseTextSize = parseInt(document.getElementById('textSize').value);
             
             // Title
-            ctx.font = `bold ${baseTextSize + 6 * scaleFactor}px Inter, sans-serif`;
+            ctx.font = `bold ${(baseTextSize + 6) * scaleFactor}px Inter, sans-serif`;
             ctx.textAlign = 'center';
             ctx.fillText(document.getElementById('plotTitle').value, canvas.width / 2, 50 * scaleFactor);
 
@@ -449,17 +533,22 @@
             ctx.fillText(document.getElementById('yAxisLabel').value, 0, 0);
             ctx.restore();
             
-            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize);
+            drawLegend(ctx, colors, canvas.width, canvas.height, pointSize, backgroundType);
 
             // Create a downscaled canvas for display purposes
             const displayCanvas = document.createElement('canvas');
             displayCanvas.width = 800;
             displayCanvas.height = 700;
             const displayCtx = displayCanvas.getContext('2d');
+            
+            // For display, always use white background for better visibility
+            displayCtx.fillStyle = 'white';
+            displayCtx.fillRect(0, 0, 800, 700);
             displayCtx.drawImage(canvas, 0, 0, 800, 700);
 
             // Attach the full-resolution data URL to the display canvas for download
             displayCanvas.fullResolutionDataUrl = canvas.toDataURL('image/png');
+            displayCanvas.downloadSettings = { dpi, backgroundType };
 
             return displayCanvas;
         }
@@ -506,7 +595,7 @@
             ctx.fill();
         }
 
-        function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize) {
+       function drawLegend(ctx, colors, canvasWidth, canvasHeight, pointSize) {
             const scaleFactor = canvasWidth / 800; // Use canvas width to determine scale
             ctx.font = `${12 * scaleFactor}px Inter, sans-serif`;
             ctx.textAlign = 'left';
